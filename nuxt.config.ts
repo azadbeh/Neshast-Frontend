@@ -3,6 +3,14 @@
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "fa",
+        dir: "rtl"
+      }
+    }
+  },
   css: ['~/assets/css/tailwind.css'],
   vite: {
     plugins: [
