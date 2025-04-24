@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     'shadcn-nuxt',
+    '@pinia/nuxt'
   ],
   shadcn: {
     prefix: '',
