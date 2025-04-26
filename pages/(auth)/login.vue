@@ -1,23 +1,32 @@
 <script setup lang="ts">
-import type { User } from "~/types/user"
+import type { User } from "~/types/user";
+import { validate } from "~/validations/login";
 
 definePageMeta({
-  layout: 'auth'
-})
+  layout: "auth",
+});
 
 useSeoMeta({
-  title: 'ورود - نشست',
-  description: 'ورود در نشست',
-})
+  title: "ورود - نشست",
+  description: "ورود در نشست",
+});
 
 const user = ref<User>({
-  email: '',
-  password: '',
-})
+  email: "",
+  password: "",
+});
+
+const errors = ref<Record<string, string>>({});
 
 function login() {
-  console.log('اطلاعات فرم ارسال شد:', user.value)
-  // Call your login API here
+  const validationResult = validate(user.value);
+  if (validationResult == true) {
+    errors.value = {};
+    console.log("اطلاعات فرم ارسال شد:", user.value);
+    // Call your login API here
+  } else {
+    errors.value = validationResult;
+  }
 }
 </script>
 
@@ -28,9 +37,7 @@ function login() {
         <form class="p-6 md:p-8" @submit.prevent="login">
           <div class="flex flex-col gap-6">
             <div class="flex flex-col items-center text-center">
-              <h1 class="text-2xl font-bold">
-                خوش برگشتی!
-              </h1>
+              <h1 class="text-2xl font-bold">خوش برگشتی!</h1>
               <p class="text-muted-foreground text-balance">
                 به حساب نشست خود وارد شوید
               </p>
@@ -39,11 +46,13 @@ function login() {
               <Label for="email">ایمیل</Label>
               <Input
                 id="email"
-                v-model="user.password"
-                type="email"
+                v-model="user.email"
+                type="text"
                 placeholder="m@example.com"
-                required
               />
+              <p v-if="errors.email" class="text-red-500 text-xs">
+                {{ errors.email }}
+              </p>
             </div>
             <div class="grid gap-3">
               <div class="flex items-center">
@@ -55,11 +64,16 @@ function login() {
                   رمزعبور رو فراموش کردی؟
                 </a>
               </div>
-              <Input id="password" v-model="user.password" type="password" required />
+              <Input
+                id="password"
+                v-model="user.password"
+                type="password"
+              />
+              <p v-if="errors.password" class="text-red-500 text-xs">
+                {{ errors.password }}
+              </p>
             </div>
-            <Button type="submit" class="w-full">
-              ورود
-            </Button>
+            <Button type="submit" class="w-full">ورود</Button>
             <div class="text-center text-sm">
               حساب کاربری نداری?
               <NuxtLink to="/register" class="underline underline-offset-4">
