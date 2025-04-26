@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { User } from '@/api'
+
 definePageMeta({
   layout: 'auth'
 })
@@ -6,6 +8,14 @@ definePageMeta({
 useSeoMeta({
   title: 'ثبت نام - نشست',
   description: 'ثبت نام در نشست',
+})
+
+const user = ref<User>({
+  first_name: '',
+  last_name: '',
+  email: '',
+  username: '',
+  password: '',
 })
 </script>
 <template>
@@ -27,6 +37,7 @@ useSeoMeta({
                 <Label for="name">نام</Label>
                 <Input
                   id="name"
+                  v-model="user.first_name"
                   type="text"
                   placeholder="متین"
                   required
@@ -36,6 +47,7 @@ useSeoMeta({
                 <Label for="name">نام خانوادگی</Label>
                 <Input
                   id="name"
+                  v-model="user.last_name"
                   type="text"
                   placeholder="سلیمانی"
                   required
@@ -46,6 +58,7 @@ useSeoMeta({
               <Label for="username">نام کاربری</Label>
               <Input
                 id="username"
+                v-model="user.username"
                 type="text"
                 placeholder="matinsoleymni"
                 required
@@ -55,6 +68,7 @@ useSeoMeta({
               <Label for="email">ایمیل</Label>
               <Input
                 id="email"
+                v-model="user.email"
                 type="email"
                 placeholder="m@example.com"
                 required
@@ -64,7 +78,7 @@ useSeoMeta({
               <div class="flex items-center">
                 <Label for="password">رمزعبور</Label>
               </div>
-              <Input id="password" type="password" required />
+              <Input id="password" v-model="user.password" type="password" required />
             </div>
             <Button type="submit" class="w-full">
               ثبت نام

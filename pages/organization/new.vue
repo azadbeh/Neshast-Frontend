@@ -24,7 +24,6 @@
   </template>
   
   <script setup lang="ts">
-  import { ref } from 'vue'
   import type { OrganizationCreate } from '@/api'
   import OrgService from '~/services/organization'
   

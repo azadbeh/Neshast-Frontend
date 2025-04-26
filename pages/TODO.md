@@ -1,8 +1,8 @@
 # TODO pages
 
 list: 
-[ ] - login
-[ ] - signup
+[X] - login
+[X] - signup
 
 [ ] - event
 [ ] - event list

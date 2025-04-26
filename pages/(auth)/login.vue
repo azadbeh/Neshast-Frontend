@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { User } from "@/api"
+
 definePageMeta({
   layout: 'auth'
 })
@@ -7,13 +9,23 @@ useSeoMeta({
   title: 'ورود - نشست',
   description: 'ورود در نشست',
 })
+
+const user = ref<User>({
+  email: '',
+  password: '',
+})
+
+function login() {
+  console.log('اطلاعات فرم ارسال شد:', user.value)
+  // Call your login API here
+}
 </script>
 
 <template>
   <div class="flex flex-col gap-6">
     <Card class="overflow-hidden p-0">
       <CardContent class="grid p-0 md:grid-cols-2">
-        <form class="p-6 md:p-8">
+        <form class="p-6 md:p-8" @submit.prevent="login">
           <div class="flex flex-col gap-6">
             <div class="flex flex-col items-center text-center">
               <h1 class="text-2xl font-bold">
@@ -27,6 +39,7 @@ useSeoMeta({
               <Label for="email">ایمیل</Label>
               <Input
                 id="email"
+                v-model="user.password"
                 type="email"
                 placeholder="m@example.com"
                 required
@@ -42,7 +55,7 @@ useSeoMeta({
                   رمزعبور رو فراموش کردی؟
                 </a>
               </div>
-              <Input id="password" type="password" required />
+              <Input id="password" v-model="user.password" type="password" required />
             </div>
             <Button type="submit" class="w-full">
               ورود
