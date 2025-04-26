@@ -4,11 +4,10 @@ definePageMeta({
 })
 
 useSeoMeta({
-  title: 'ورود - نشست',
-  description: 'ورود در نشست',
+  title: 'ثبت نام - نشست',
+  description: 'ثبت نام در نشست',
 })
 </script>
-
 <template>
   <div class="flex flex-col gap-6">
     <Card class="overflow-hidden p-0">
@@ -17,11 +16,40 @@ useSeoMeta({
           <div class="flex flex-col gap-6">
             <div class="flex flex-col items-center text-center">
               <h1 class="text-2xl font-bold">
-                خوش برگشتی!
+                خوش آمدی!
               </h1>
               <p class="text-muted-foreground text-balance">
-                به حساب نشست خود وارد شوید
+                حساب نشست خود را بسازید
               </p>
+            </div>
+            <div class="grid grid-cols-2 gap-2 ">
+              <div class="grid gap-3">
+                <Label for="name">نام</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="متین"
+                  required
+                />
+              </div>
+              <div class="grid gap-3">
+                <Label for="name">نام خانوادگی</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="سلیمانی"
+                  required
+                />
+              </div>
+            </div>
+            <div class="grid gap-3">
+              <Label for="username">نام کاربری</Label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="matinsoleymni"
+                required
+              />
             </div>
             <div class="grid gap-3">
               <Label for="email">ایمیل</Label>
@@ -35,22 +63,16 @@ useSeoMeta({
             <div class="grid gap-3">
               <div class="flex items-center">
                 <Label for="password">رمزعبور</Label>
-                <a
-                  href="#"
-                  class="mr-auto text-sm underline-offset-2 hover:underline"
-                >
-                  رمزعبور رو فراموش کردی؟
-                </a>
               </div>
               <Input id="password" type="password" required />
             </div>
             <Button type="submit" class="w-full">
-              ورود
+              ثبت نام
             </Button>
             <div class="text-center text-sm">
-              حساب کاربری نداری?
-              <NuxtLink to="/register" class="underline underline-offset-4">
-                ثبت نام
+              حساب کاربری دارید?
+              <NuxtLink to="/login" class="underline underline-offset-4">
+                ورود
               </NuxtLink>
             </div>
           </div>
